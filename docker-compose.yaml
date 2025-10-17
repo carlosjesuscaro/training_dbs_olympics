@@ -1,0 +1,24 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16
+    container_name: adventure_db
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      # Mounts the init scripts to be run on first start
+      - ./init-scripts:/docker-entrypoint-initdb.d
+
+      # Mounts your local data directory into the container at /data
+      - ./data:/data
+
+      # Creates a named volume to persist the database data
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata: # Defines the named volume for persistence
