@@ -6,21 +6,21 @@ DROP TABLE IF EXISTS olympics_events;
 
 -- Create the table with all 15 columns from the CSV file
 CREATE TABLE olympics_events (
-    "ID" INT,
-    "Name" VARCHAR,
-    "Sex" VARCHAR(1),
-    "Age" VARCHAR,    -- Using VARCHAR as some values are "NA"
-    "Height" VARCHAR, -- Using VARCHAR as some values are "NA"
-    "Weight" VARCHAR, -- Using VARCHAR as some values are "NA"
-    "Team" VARCHAR,
-    "NOC" VARCHAR(3),
-    "Games" VARCHAR,
-    "Year" INT,
-    "Season" VARCHAR,
-    "City" VARCHAR,
-    "Sport" VARCHAR,
-    "Event" VARCHAR,
-    "Medal" VARCHAR
+    ID INT,
+    Name VARCHAR,
+    Sex VARCHAR(1),
+    Age INT,    -- Using VARCHAR as some values are "NA"
+    Height NUMERIC(6, 2), -- Using VARCHAR as some values are "NA"
+    Weight NUMERIC(6, 2), -- Using VARCHAR as some values are "NA"
+    Team VARCHAR,
+    NOC VARCHAR(3),
+    Games VARCHAR,
+    EventYear INT,
+    Season VARCHAR,
+    City VARCHAR,
+    Sport VARCHAR,
+    Event VARCHAR,
+    Medal VARCHAR
 );
 
 -- Copy the data from the CSV file into the newly created table
@@ -28,4 +28,5 @@ CREATE TABLE olympics_events (
 COPY olympics_events
 FROM '/data/athlete_events.csv'
 DELIMITER ','
-CSV HEADER;
+CSV HEADER
+NULL 'NA';

@@ -4,7 +4,7 @@ version: '3.8'
 services:
   db:
     image: postgres:16
-    container_name: adventure_db
+    container_name: olympics_db
     restart: always
     env_file:
       - .env
